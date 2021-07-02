@@ -28,12 +28,14 @@ class Contacts {
 
   handleAddContact() {
     event.preventDefault()
-    const body = {"contact": {"first_name": this.contactFirstName.value, "last_name": this.contactLastName.value,
-    "email": this.contactEmail.value, "phone_number": this.contactPhoneNumber.value}}
+    const body = {"first_name": this.contactFirstName.value, "last_name": this.contactLastName.value, "email": this.contactEmail.value, "phone_number": this.contactPhoneNumber.value}
     this.adapter.createContact(body)
-    .then( (contactJSON) => this.contacts.push(new Contacts(contactJSON)) )
-    .then(  this.render.bind(this) )
-    console.log(this)
+    .then( ({data}) => this.contacts.push(new Contact(data)) )
+    .then( () => {
+        this.contactsForm.querySelectorAll("[type='text']").forEach(el =>  el.value = "")
+        this.render()    
+      }
+    )
   }
 
   handleDeleteContact() {
@@ -45,11 +47,15 @@ class Contacts {
   }
 
   removeDeletedContact(deleteResponse) {
-    this.contacts = this.contacts.filter( contact => contact.id !== deleteResponse.contactId )
+    console.log(deleteResponse.data)
+    console.log(this.contacts[0].id)
+    console.log(deleteResponse.data.id)
+    this.contacts = this.contacts.filter( contact => contact.id !== deleteResponse.data.id )
     this.render()
   }
 
   contactsHTML() {
+    console.log(this.contacts);
     return this.contacts.map( contact => contact.render() ).join('')
   }
 

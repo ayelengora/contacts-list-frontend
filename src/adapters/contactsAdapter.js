@@ -6,22 +6,22 @@ class ContactsAdapter {
   getContacts() {
     // return fetch(this.baseUrl).then(res => JSON.parse(res))
     return fetch(this.baseUrl).then(res => res.json())
-
+  
   }
 
   createContact(body) {
-    const contactCreateParams = {
+    const contactCreateParams =  {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ body })
+      body: JSON.stringify(  body  )
     }
-
     return fetch(this.baseUrl, contactCreateParams).then(res => res.json())
   }
 
-  deletecontact(contactId) {
+
+  deleteContact(contactId) {
     const contactDeleteParams = {
       method: "DELETE",
       headers: {
