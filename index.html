@@ -3,6 +3,8 @@
 
 <head>
   <title>Sample JS Project frontend</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="styles/style.css">
 </head>
@@ -11,19 +13,19 @@
   <div class="container">
     <div id="new-contact-container">
       <form id="new-contact-form">
-        <input type="text" name="first-name" id="new-contact-first-name">
-        <input type="text" name="last-name" id="new-contact-last-name">
-        <input type="text" name="email" id="new-contact-email">
-        <input type="text" name="phone-number" id="new-contact-phone-number">
-        <input type="submit" value="Save contact">
+        <input class="form-input" type="text" name="first-name" id="new-contact-first-name" required>
+        <input class="form-input" type="text" name="last-name" id="new-contact-last-name" required>
+        <input class="form-input" type="email" name="email" id="new-contact-email" required>
+        <input class="form-input" type="tel" name="phone-number" id="new-contact-phone-number" required>
+        <input class="" type="submit" id="submit" value="Save contact">
+        <h5 class="error_update_message">Please, modify some field before update</h5>
       </form>
     </div>
     <div id="contacts-container">
-
     </div>
     <div id="contact-details">
-
     </div>
+    
   </div>
 
   <script type="text/javascript" src="src/components/contact.js"></script>

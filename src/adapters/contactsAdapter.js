@@ -32,4 +32,16 @@ class ContactsAdapter {
       res.json()
     )
   }
+
+  
+  updateContact(body, id) {
+    const contactUpdateParams = {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+    body: JSON.stringify(  body  )
+    }
+    return fetch(`${this.baseUrl}/${id}`, contactUpdateParams).then(res => res.json())
+  }
 }

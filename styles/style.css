@@ -26,3 +26,11 @@ ul {
 .delete-contact-link {
   color:red;
 }
+
+.error_update_message {
+  display: none;
+}
+
+.error_update_message.active {
+  display: block;
+}

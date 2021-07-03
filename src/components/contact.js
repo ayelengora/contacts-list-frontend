@@ -5,7 +5,13 @@ class Contact {
   }
 
   renderShow() {
-    return `<h3>${this.body}</h3>`
+    return `<h3>${this.body.first_name}</h3>
+            <h5>Last Name: ${this.body.last_name}</h5>
+            <h5>Email: ${this.body.email}</h5>
+            <h5>Phone number:: ${this.body.phone_number}</h5>
+
+    
+    `
   }
 
   render() {
