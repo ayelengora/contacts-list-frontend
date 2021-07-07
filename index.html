@@ -1,38 +1,70 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-  <title>Sample JS Project frontend</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="styles/style.css">
-</head>
-
-<body>
-  <div class="container">
-    <div id="new-contact-container">
-      <form id="new-contact-form">
-        <input class="form-input" type="text" name="first-name" id="new-contact-first-name" required>
-        <input class="form-input" type="text" name="last-name" id="new-contact-last-name" required>
-        <input class="form-input" type="email" name="email" id="new-contact-email" required>
-        <input class="form-input" type="tel" name="phone-number" id="new-contact-phone-number" required>
-        <input class="" type="submit" id="submit" value="Save contact">
-        <h5 class="error_update_message">Please, modify some field before update</h5>
-      </form>
+  <head>
+    <title>Sample JS Project frontend</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-light bg-info">
+      <a class="navbar-brand m-2 text-light" href="#">Your ContactList</a>
+    </nav>
+    <div class="container">
+      <div id="new-contact-container">
+        <h2 class="text-center mt-4 ">Add a Contact</h2>
+        <form id="new-contact-form">
+          <div class="form-group row">
+            <div class="form-group col-sm-6">
+              <label for="inputEmail4">First Name</label>
+              <input class="form-control" type="text" name="first-name" id="new-contact-first-name"  placeholder="First Name" required>
+            </div>
+            <div class="form-group col-sm-6">
+              <label for="inputPassword4">Last Name</label>
+              <input class="form-control" type="text" name="last-name" id="new-contact-last-name" placeholder="Last Name" required>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="form-group col-sm-6">
+              <label class="sr-only" for="inlineFormInputGroupUsername2">Email</label>
+              <div class="input-group mb-2 mr-sm-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">@</div>
+                </div>
+                <input type="email" class="form-control" name="email" id="new-contact-email" placeholder="Email" required>
+              </div>
+            </div>
+            <div class="form-group col-sm-6">
+              <label for="inputAddress2">Phone Number</label>
+              <input class="form-control" type="tel" name="phone-number" id="new-contact-phone-number" placeholder="Phone Number" required>
+            </div>
+          </div>
+          <div class="d-flex text-align-center justify-content-center"> 
+            <input class="btn btn-lg btn-info m-3" type="submit" id="submit" value="Save contact">
+            <button type="button" class="btn btn-light error_update_message text-danger" data-toggle="popover" data-placement="bottom" title="Tooltip on bottom">
+              Please, modify some field before update
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="row">
+        <div class=" col-sm-6">
+          <h2 class="text-center">Contact List</h2>
+          <ul class="list-group" id="contacts-container">
+            
+          </ul>
+        </div>
+        <div id="contact-details" class="col-sm-6">
+        </div>
+        <div id="contact-history">
+        </div>
+      </div>
     </div>
-    <div id="contacts-container">
-    </div>
-    <div id="contact-details">
-    </div>
-    
-  </div>
-
-  <script type="text/javascript" src="src/components/contact.js"></script>
-  <script type="text/javascript" src="src/adapters/contactsAdapter.js"></script>
-  <script type="text/javascript" src="src/components/contacts.js"></script>
-  <script type="text/javascript" src="src/components/app.js"></script>
-  <script type="text/javascript" src="src/index.js"></script>
-</body>
-
+    <script type="text/javascript" src="src/components/contact.js"></script>
+    <script type="text/javascript" src="src/adapters/contactsAdapter.js"></script>
+    <script type="text/javascript" src="src/components/contacts.js"></script>
+    <script type="text/javascript" src="src/components/app.js"></script>
+    <script type="text/javascript" src="src/index.js"></script>
+  </body>
 </html>
