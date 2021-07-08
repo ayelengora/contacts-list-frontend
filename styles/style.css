@@ -18,6 +18,15 @@ ul {
   display: none;
 }
 
+#email-taken {
+  display: none;
+  color: red;
+}
+
+#email-taken.active {
+  display: block;
+}
+
 .error_update_message.active {
   display: block;
 }
@@ -40,4 +49,11 @@ ul {
 table {
   margin-top: 30px;
 }
-
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+   -webkit-appearance: none;
+   margin: 0;
+}
+input[type="number"] {
+   -moz-appearance: textfield;
+}

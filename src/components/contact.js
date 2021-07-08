@@ -2,7 +2,6 @@ class Contact {
   constructor(contactJSON) {
     this.body = contactJSON.attributes
     this.id = contactJSON.id
-    console.log(this.id)
   }
 
   renderShow() {

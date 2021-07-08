@@ -15,10 +15,11 @@ class Contacts {
     this.contactPhoneNumber = document.getElementById('new-contact-phone-number')
     this.contactSubmit = document.getElementById('submit')
     this.contactsNode = document.getElementById('contacts-container')
-    this.contactsForm.addEventListener('submit',this.handleSubmitForm.bind(this))
-    this.contactsNode.addEventListener('click',this.handleEventContact.bind(this))
     this.contactDetails = document.getElementById("contact-details")
     this.contactEdits = document.getElementById("contact-history")
+    this.emailError = document.getElementById("email-taken")
+    this.contactsForm.addEventListener('submit',this.handleSubmitForm.bind(this))
+    this.contactsNode.addEventListener('click',this.handleEventContact.bind(this))
     this.errorUpdateMessage = document.querySelector(".error_update_message")
   }
 
@@ -35,12 +36,17 @@ class Contacts {
       const body = {"first_name": this.contactFirstName.value, "last_name": this.contactLastName.value,
       "email": this.contactEmail.value, "phone_number": this.contactPhoneNumber.value}
         this.adapter.createContact(body)
-        .then( ({data}) => this.contacts.push(new Contact(data)) )
-        .then( () => {
-            this.contactsForm.querySelectorAll(".form-control").forEach(el =>  el.value = "")
-            this.showContactList()    
-          }
-        )
+        .then((data) => {
+          if ("error" in data) {
+            this.emailError.innerHTML = data["error"]["email"][0]
+            this.emailError.classList.add("active")
+          } else{
+          this.contacts.push(new Contact(data["data"]))
+          this.contactsForm.querySelectorAll(".form-control").forEach(el =>  el.value = "")
+          this.emailError.classList.remove("active")
+          this.showContactList()
+        }
+        })
     } else if (this.contactSubmit.value == "Update Contact") {
       const body = {"first_name": this.contactFirstName.value, "last_name": this.contactLastName.value,
       "email": this.contactEmail.value, "phone_number": this.contactPhoneNumber.value}
@@ -48,12 +54,21 @@ class Contacts {
       const index = this.contacts.findIndex( contact =>  contact.id == id)
       if (this.detectFormChanges(body)) {
         this.adapter.updateContact(body, id)
-        .then( ({data}) => {
-          this.contacts[index] = new Contact(data)
+        .then( (data) => {
+          if ("error" in data) {
+            this.emailError.innerHTML = data["error"]["email"][0]
+            this.emailError.classList.add("active")
+          } else{ 
+
+          this.contacts[index] = new Contact(data["data"])
           this.contactsForm.querySelectorAll(".form-control").forEach(el =>  el.value = "")
           this.contactSubmit.value = "Save contact"
           this.showContactList()
           this.errorUpdateMessage.classList.remove("active")
+          this.emailError.classList.remove("active")
+          this.contactEdits.innerHTML = ""
+          this.contactDetails.innerHTML= ""
+          }
         })
       } else {
         this.errorUpdateMessage.classList.add("active")
